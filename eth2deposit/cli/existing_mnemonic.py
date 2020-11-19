@@ -17,7 +17,8 @@ from .generate_keys import (
 
 
 def validate_mnemonic(cts: click.Context, param: Any, mnemonic: str) -> str:
-    if verify_mnemonic(mnemonic, WORD_LISTS_PATH):
+    mnemonic = verify_mnemonic(mnemonic, WORD_LISTS_PATH)
+    if mnemonic is not None:
         return mnemonic
     else:
         raise ValidationError('That is not a valid mnemonic, please check for typos.')
